@@ -1,0 +1,25 @@
+.header {
+	padding: 24px 28px;
+
+}
+
+.loading,
+.error {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 60px 20px;
+	font-size: 15px;
+	color: #888;
+}
+
+.error {
+	color: #e05252;
+}
+
+.title {
+	font-size: 28px;
+	font-weight: 700;
+	color: #f0f0f0;
+	letter-spacing: -0.02em;
+}

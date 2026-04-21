@@ -1,0 +1,34 @@
+.listHeader {
+	display: flex;
+	align-items: center;
+	padding: 8px 12px;
+	border-bottom: 1px solid #2e2e2e;
+}
+
+.listHeaderJob {
+	flex: 1;
+	font-size: 14px;
+	font-weight: 600;
+	color: #f0f0f0;
+}
+
+
+.emptyState {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 60px 20px;
+	gap: 12px;
+}
+
+.emptyTitle {
+	font-size: 20px;
+	font-weight: 700;
+	color: #f0f0f0;
+}
+
+.emptySubtitle {
+	font-size: 15px;
+	color: #888;
+	text-align: center;
+}

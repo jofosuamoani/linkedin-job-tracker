@@ -1,0 +1,31 @@
+.pagination {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 16px;
+	padding: 20px;
+}
+
+.button {
+	background-color: transparent;
+	border: 1.5px solid #555;
+	border-radius: 999px;
+	color: inherit;
+	cursor: pointer;
+	font-size: 14px;
+	padding: 6px 16px;
+}
+
+.button:hover:not(:disabled) {
+	border-color: #aaa;
+}
+
+.button:disabled {
+	opacity: 0.3;
+	cursor: default;
+}
+
+.label {
+	font-size: 14px;
+	color: #aaa;
+}
