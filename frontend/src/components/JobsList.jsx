@@ -44,7 +44,7 @@ export default function JobsList({ jobs, dateType, range, sort }) {
 		<div className={styles.emptyState}>
 			<span className={styles.emptyTitle}>No jobs here</span>
 			<span className={styles.emptySubtitle}>
-				Find jobs to save. When you do, they'll appear here to help you stay
+				Find jobs to apply to. When you do, they'll appear here to help you stay
 				organized.
 			</span>
 		</div>
