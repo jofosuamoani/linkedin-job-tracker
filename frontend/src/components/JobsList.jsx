@@ -42,10 +42,9 @@ export default function JobsList({ jobs, dateType, range, sort }) {
 
 	return sorted.length === 0 ? (
 		<div className={styles.emptyState}>
-			<span className={styles.emptyTitle}>No jobs here</span>
+			<span className={styles.emptyTitle}>No jobs match your filters</span>
 			<span className={styles.emptySubtitle}>
-				Find jobs to apply to. When you do, they'll appear here to help you stay
-				organized.
+				Try adjusting the date range or switching between "Date applied" and "Date posted".
 			</span>
 		</div>
 	) : (
