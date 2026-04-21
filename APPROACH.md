@@ -1,3 +1,9 @@
+## Live Demo
+
+https://linkedin-job-tracker-alpha.vercel.app/
+
+The project is deployed on Vercel so it can be interacted with directly.
+
 ## What I built and why I built it
 
 I went with Problem 3 and decided to build a simplified version of LinkedIn's job tracker feature with improved filtering and sorting. I added a select to allow for sorting, and I separated the current filter select into two selects, one for selecting either "Date applied" or "Date posted" and one for selectin the time constraint.

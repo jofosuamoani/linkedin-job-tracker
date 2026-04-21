@@ -2,6 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "../styles/JobCard.module.css";
 
+function logoColor(company) {
+	const hue = [...company].reduce((acc, ch) => acc + ch.charCodeAt(0), 0) % 360;
+	return `hsl(${hue}, 55%, 40%)`;
+}
+
 // calculate and format the time passed
 function timeAgo(dateStr) {
 	const diff = Date.now() - new Date(dateStr).getTime();
@@ -17,8 +22,14 @@ export default function JobCard({ job, dateType }) {
 	const posted = `Posted ${timeAgo(job.datePosted)} ago`;
 
 	return (
-		<li className={styles.card}>
-			<div className={styles.logo}>{job.logoText}</div>
+		<li className={styles.card} aria-label={`${job.title} at ${job.company}`}>
+			<div
+				className={styles.logo}
+				style={{ backgroundColor: logoColor(job.company) }}
+				aria-hidden="true"
+			>
+				{job.logoText}
+			</div>
 			<div className={styles.details}>
 				<span className={styles.title}>{job.title}</span>
 				<span className={styles.meta}>

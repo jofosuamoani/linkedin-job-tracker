@@ -38,7 +38,7 @@ function App() {
 
 	return (
 		<div>
-			<header className={styles.header}>
+			<header className={styles.header} aria-label="Job tracker">
 				<span className={styles.title}>Job tracker</span>
 			</header>
 			<main>

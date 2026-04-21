@@ -53,7 +53,7 @@ export default function JobsList({ jobs, dateType, range, sort }) {
 			<div className={styles.listHeader}>
 				<span className={styles.listHeaderJob}>Jobs</span>
 			</div>
-			<ul>
+			<ul aria-label="Job listings">
 				{paginated.map((job) => (
 					<JobCard key={job.id} job={job} dateType={dateType} />
 				))}

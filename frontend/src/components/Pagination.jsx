@@ -4,14 +4,28 @@ import styles from "../styles/Pagination.module.css";
 
 export default function Pagination({ page, totalPages, onPrev, onNext }) {
 	return (
-		<div className={styles.pagination}>
-			<button className={styles.button} onClick={onPrev} disabled={page === 1}>
+		<div
+			className={styles.pagination}
+			role="navigation"
+			aria-label="Pagination"
+		>
+			<button
+				className={styles.button}
+				onClick={onPrev}
+				disabled={page === 1}
+				aria-label="Previous page"
+			>
 				Previous
 			</button>
-			<span className={styles.label}>
+			<span className={styles.label} aria-current="page" aria-live="polite">
 				{page} / {totalPages}
 			</span>
-			<button className={styles.button} onClick={onNext} disabled={page === totalPages}>
+			<button
+				className={styles.button}
+				onClick={onNext}
+				disabled={page === totalPages}
+				aria-label="Next page"
+			>
 				Next
 			</button>
 		</div>
