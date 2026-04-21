@@ -4,6 +4,17 @@ https://linkedin-job-tracker-alpha.vercel.app/
 
 The project is deployed on Vercel so it can be interacted with directly.
 
+# Setup
+
+This project was built and tested with Node.js and npm. The runnable frontend app is located in the `frontend/` directory.
+
+## Run locally
+
+```bash
+cd frontend
+npm install
+npm run dev
+
 ## What I built and why I built it
 
 I went with Problem 3 and decided to build a simplified version of LinkedIn's job tracker feature with improved filtering and sorting. I added a select to allow for sorting, and I separated the current filter select into two selects, one for selecting either "Date applied" or "Date posted" and one for selectin the time constraint.
@@ -44,3 +55,4 @@ As I'm currently in the job market, it is a feature which I use almost everyday,
 
 - I would implement a backend API and a database to be able to store and fetch real data. This would be a more realistic implementation and would allow for scalabilty, and server-side manipulation of the data. It would also allow us to store our user selections for our filtering and sorting in the server.
 - I would add more filtering options such as "Past month" and "Past year", and add more sorting options such as sorting company names or job titles alphabetically.
+```

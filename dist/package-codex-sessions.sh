@@ -24,8 +24,15 @@ MATCH_FILE="$(mktemp)"
 LIST_FILE="$(mktemp)"
 trap 'rm -f "$MATCH_FILE" "$LIST_FILE"' EXIT
 
-PATTERN="\"cwd\":\\s*\"$REPO_ROOT\""
-rg -l "$PATTERN" "$SESSIONS_DIR" >"$MATCH_FILE" || true
+# Match sessions whose cwd is REPO_ROOT or any subpath under it. Some
+# candidates run Codex from <repo>/subfolder; that session should still be
+# packaged for review.
+#
+# Use grep rather than rg — rg isn't reliably on candidate PATH when
+# submit.sh shells out, and the previous version silently failed.
+# grep -E doesn't support \s; substitute [[:space:]]* for portability.
+PATTERN="\"cwd\":[[:space:]]*\"$REPO_ROOT(/[^\"]*)?\""
+grep -r -l -E "$PATTERN" "$SESSIONS_DIR" >"$MATCH_FILE" || true
 
 if [ ! -s "$MATCH_FILE" ]; then
     echo "No Codex sessions found for repo $REPO_ROOT"
@@ -38,7 +45,7 @@ while IFS= read -r session_file; do
         printf '%s\n' "$session_rel" >>"$LIST_FILE"
 
         session_id="$(
-            rg -m1 -o '"id":"[^"]+"' "$session_file" \
+            grep -m1 -o -E '"id":"[^"]+"' "$session_file" \
                 | sed 's/"id":"//; s/"$//'
         )"
 

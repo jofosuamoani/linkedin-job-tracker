@@ -158,23 +158,31 @@ PYEOF
 
 packaged=0
 
-# Find workspace state.vscdb matching this repo
+# Find workspace state.vscdb matching this repo. Candidates may have opened the
+# repo root, a subfolder, or both — package every matching workspace.
 WORKSPACE_DIR="$CURSOR_BASE/workspaceStorage"
 if [ -d "$WORKSPACE_DIR" ]; then
+    ws_index=0
     for ws in "$WORKSPACE_DIR"/*/workspace.json; do
         [ -f "$ws" ] || continue
         ws_dir="$(dirname "$ws")"
         # workspace.json contains {"folder": "file:///path/to/project"}
         # Extract the folder URI and strip the file:// prefix
         folder="$(grep -o '"folder":"[^"]*"' "$ws" 2>/dev/null | head -1 | sed 's/"folder":"//; s/"$//; s|^file://||')" || true
-        if [ "$folder" = "$REPO_ROOT" ] && [ -f "$ws_dir/state.vscdb" ]; then
-            echo "Found matching workspace: $ws_dir"
-            DEST_DB="$OUTPUT_DIR/cursor-workspace-sessions-$TIMESTAMP.vscdb"
+        # Match REPO_ROOT or any path under it — some candidates open a
+        # subfolder of the repo in Cursor rather than the repo root.
+        if { [ "$folder" = "$REPO_ROOT" ] || [[ "$folder" == "$REPO_ROOT"/* ]]; } && [ -f "$ws_dir/state.vscdb" ]; then
+            echo "Found matching workspace: $ws_dir (folder: $folder)"
+            if [ "$ws_index" -eq 0 ]; then
+                DEST_DB="$OUTPUT_DIR/cursor-workspace-sessions-$TIMESTAMP.vscdb"
+            else
+                DEST_DB="$OUTPUT_DIR/cursor-workspace-sessions-$TIMESTAMP-$ws_index.vscdb"
+            fi
             extract_conversations "$ws_dir/state.vscdb" "$DEST_DB" "$REPO_ROOT"
             gzip -f "$DEST_DB"
             echo "Created: ${DEST_DB}.gz"
             packaged=1
-            break
+            ws_index=$((ws_index + 1))
         fi
     done
 fi
