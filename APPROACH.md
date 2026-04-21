@@ -24,6 +24,7 @@ As I'm currently in the job market, it is a feature which I use almost everyday,
 - Defaulted to “Date applied”, “Past 24 hours”, and “Newest first” as I believe users would want to see the most recent activity immediately. This, of course, is an assumption so certain users could prefer to see older information first.
 - I hid the pagination controls when not needed as this reduces noise, and prevents users from trying to use it when they can't.
 - Kept the page state and all list and pagination logic in the JobsList component. This keeps all the list logic in the same place and allows the Pagination component to be mainly presentational.
+- Added labels to improve accessibility, as this is important for frontend features.
 
 # What I intentionally left out
 
